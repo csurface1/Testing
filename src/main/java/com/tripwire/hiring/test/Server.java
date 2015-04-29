@@ -93,8 +93,45 @@ public class Server {
   public static class EchoDataHandler implements DataHandler{
     @Override
     public String handle(String data) {
-      System.out.println("Received data test = " + data);
-      return data;
+      System.out.println("Received data = " + data);
+      return contigous(data);
     }
   }
+  
+  /*
+     * Reads in a String and returns the longest chain of repeating characters 
+     * for that String
+     */
+    public static String contigous(String a){
+     
+        int iCount;
+        int iLongest = 0;
+        int iPos = 0;
+        char cTemp;
+        
+        //Go through each character in String a from start to finish
+        for(int i = 0; i < a.length(); i++){
+            
+            cTemp = a.charAt(i);
+            iCount = 0;           
+            
+            //Check character from cTemp onward until the next one isn't equal
+            for(int j = i; j < a.length(); j++){
+                if(a.charAt(j) != cTemp)
+                    break;
+                else
+                    iCount++;                     
+            }
+            
+            //If the next sequence of characters was longer then previous, update iLongest value
+            if(iCount > iLongest){
+                iLongest = iCount;
+                iPos = i;
+            }
+
+        }
+        
+       //return the result of longest contigous character
+       return "("+iPos+", "+iLongest+")";
+    }
 }
