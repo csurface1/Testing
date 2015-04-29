@@ -93,7 +93,7 @@ public class Server {
   public static class EchoDataHandler implements DataHandler{
     @Override
     public String handle(String data) {
-      System.out.println("Received data = " + data);
+      System.out.println("Received data test = " + data);
       return data;
     }
   }
