@@ -71,7 +71,7 @@ public class Server extends Thread {
     Socket clientSocket = null;
     while (true) {
       clientSocket = serverSocket.accept();
-      (new clientThread()).start();
+      (new Server()).start();
       /*
       PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
       BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
