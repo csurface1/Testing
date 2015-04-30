@@ -43,7 +43,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class Server extends Thread {
 
   public static final int SERVER_PORT = 10000;
 
@@ -71,10 +71,13 @@ public class Server {
     Socket clientSocket = null;
     while (true) {
       clientSocket = serverSocket.accept();
+      (new clientThread()).start();
+      /*
       PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
       BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
       handleClientData(handler, writer, reader);
       clientSocket.close();
+      */
     }
   }
 
@@ -97,6 +100,13 @@ public class Server {
       return contigous(data);
     }
   }
+  
+  public void run() {
+        PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        handleClientData(handler, writer, reader);
+        clientSocket.close();
+    }
   
   /*
      * Reads in a String and returns the longest chain of repeating characters 
