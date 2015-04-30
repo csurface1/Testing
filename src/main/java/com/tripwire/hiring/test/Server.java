@@ -48,8 +48,11 @@ public class Server extends Thread {
   public static final int SERVER_PORT = 10000;
 
   public static void main(String[] args) throws Exception {
-    
-    (new Server()).start();
+    try{
+      (new Server()).start();
+    } catch (IOException e) {
+      System.out.printf("Socket Failure: %s", e.getMessage());
+    }
     /*
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
@@ -102,22 +105,18 @@ public class Server extends Thread {
     }
   }
   
-  public void run() throws Exception{
+  public void run() {
     //int SERVER_PORT = 10000;
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
-    try {
+
       serverSocket = socketFactory.createServerSocket(10000);
 
       listenAndRespond(serverSocket);
 
-    } catch (IOException e) {
-      System.out.printf("Socket Failure: %s", e.getMessage());
-    } finally {
       if (serverSocket != null) {
         serverSocket.close();
       }
-    }
   }
   
   /*
