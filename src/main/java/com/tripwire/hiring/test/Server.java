@@ -48,8 +48,7 @@ public class Server extends Thread {
   public static final int SERVER_PORT = 10000;
 
   public static void main(String[] args) throws Exception {
-      (new Server()).start();
-    /*
+    
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
     try {
@@ -64,12 +63,10 @@ public class Server extends Thread {
         serverSocket.close();
       }
     }
-    */
   }
 
   @VisibleForTesting
-  //protected static void listenAndRespond(ServerSocket serverSocket) throws IOException {
-  protected static void listenAndRespond(ServerSocket serverSocket) throws InterruptedException {
+  protected static void listenAndRespond(ServerSocket serverSocket) throws IOException {
     DataHandler handler = new EchoDataHandler();
     String data = null;
     Socket clientSocket = null;
@@ -83,8 +80,7 @@ public class Server extends Thread {
   }
 
   @VisibleForTesting
-  //protected static void handleClientData(DataHandler handler, PrintWriter writer, BufferedReader reader) throws IOException {
-  protected static void handleClientData(DataHandler handler, PrintWriter writer, BufferedReader reader) throws InterruptedException {
+  protected static void handleClientData(DataHandler handler, PrintWriter writer, BufferedReader reader) throws IOException {
     String data;
     while ((data = reader.readLine()) != null) {
       writer.println(handler.handle(data));
@@ -100,23 +96,6 @@ public class Server extends Thread {
     public String handle(String data) {
       System.out.println("Received data = " + data);
       return contigous(data);
-    }
-  }
-  
-  public void run() {
-    ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
-    ServerSocket serverSocket = null;
-    try {
-      serverSocket = socketFactory.createServerSocket(10000);
-
-      listenAndRespond(serverSocket);
-
-    } catch (InterruptedException e) {
-      System.out.printf("Socket Failure: %s", e.getMessage());
-    } finally {
-      if (serverSocket != null) {
-        serverSocket.close();
-      }
     }
   }
   
