@@ -112,8 +112,6 @@ public class Server extends Thread {
 
       listenAndRespond(serverSocket);
 
-      System.out.printf("Socket Failure: %s", e.getMessage());
-
       if (serverSocket != null) {
         serverSocket.close();
       }
