@@ -49,6 +49,7 @@ public class Client {
       BufferedReader socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
       BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 
+      unitTest(consoleOut, socketWriter, socketReader, inputReader);
       sendAndReceive(consoleOut, socketWriter, socketReader, inputReader);
 
     } catch (IOException ioex) {
@@ -67,6 +68,19 @@ public class Client {
         consoleOut.println("Client is exiting.");//this could be "broken froma  refactoring ;) change console out back to System.out
         break;
       }
+      socketWriter.println(line);
+      System.out.println(socketReader.readLine());
+    }
+  }
+  
+  protected static void unitTest(
+          PrintStream consoleOut,
+          PrintWriter socketWriter,
+          BufferedReader socketReader,
+          BufferedReader consoleIn) throws IOException {
+    String[] testStrings = { "abc", "abcc", "aabc", "abbc", "aabbcc", "abcabc" };
+    for(int i = 0; i < testStrings.length(); i++){
+      String line = testStrings[i];
       socketWriter.println(line);
       System.out.println(socketReader.readLine());
     }
