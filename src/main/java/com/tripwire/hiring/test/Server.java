@@ -47,9 +47,7 @@ public class Server extends Thread {
 
   public static final int SERVER_PORT = 10000;
 
-  //public static void main(String[] args) throws Exception {
-      
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
       (new Server()).start();
     /*
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
@@ -70,7 +68,8 @@ public class Server extends Thread {
   }
 
   @VisibleForTesting
-  protected static void listenAndRespond(ServerSocket serverSocket) throws IOException {
+  //protected static void listenAndRespond(ServerSocket serverSocket) throws IOException {
+  protected static void listenAndRespond(ServerSocket serverSocket) throws InterruptedException {
     DataHandler handler = new EchoDataHandler();
     String data = null;
     Socket clientSocket = null;
@@ -84,7 +83,8 @@ public class Server extends Thread {
   }
 
   @VisibleForTesting
-  protected static void handleClientData(DataHandler handler, PrintWriter writer, BufferedReader reader) throws IOException {
+  //protected static void handleClientData(DataHandler handler, PrintWriter writer, BufferedReader reader) throws IOException {
+  protected static void handleClientData(DataHandler handler, PrintWriter writer, BufferedReader reader) throws InterruptedException {
     String data;
     while ((data = reader.readLine()) != null) {
       writer.println(handler.handle(data));
@@ -104,7 +104,6 @@ public class Server extends Thread {
   }
   
   public void run() {
-    //int SERVER_PORT = 10000;
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
     try {
