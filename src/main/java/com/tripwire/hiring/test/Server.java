@@ -102,7 +102,7 @@ public class Server extends Thread {
     }
   }
   
-  public void run() {
+  public void run() throws Exception{
     //int SERVER_PORT = 10000;
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
@@ -118,7 +118,6 @@ public class Server extends Thread {
         serverSocket.close();
       }
     }
-    serverSocket.close();
   }
   
   /*
