@@ -79,7 +79,7 @@ public class Client {
           BufferedReader socketReader,
           BufferedReader consoleIn) throws IOException {
     String[] testStrings = { "abc", "abcc", "aabc", "abbc", "aabbcc", "abcabc" };
-    for(int i = 0; i < testStrings.length(); i++){
+    for(int i = 0; i < testStrings.length; i++){
       String line = testStrings[i];
       socketWriter.println(line);
       System.out.println(socketReader.readLine());
