@@ -107,15 +107,18 @@ public class Server extends Thread {
     //int SERVER_PORT = 10000;
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
-
+    try {
       serverSocket = socketFactory.createServerSocket(10000);
 
       listenAndRespond(serverSocket);
 
+    } catch (InterruptedException e) {
+      System.out.printf("Socket Failure: %s", e.getMessage());
+    } finally {
       if (serverSocket != null) {
         serverSocket.close();
       }
-
+    }
   }
   
   /*
