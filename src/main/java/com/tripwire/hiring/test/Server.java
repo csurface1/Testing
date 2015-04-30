@@ -48,6 +48,9 @@ public class Server extends Thread {
   public static final int SERVER_PORT = 10000;
 
   public static void main(String[] args) throws Exception {
+    
+    (new Server()).start();
+    /*
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
     try {
@@ -62,6 +65,7 @@ public class Server extends Thread {
         serverSocket.close();
       }
     }
+    */
   }
 
   @VisibleForTesting
@@ -71,13 +75,10 @@ public class Server extends Thread {
     Socket clientSocket = null;
     while (true) {
       clientSocket = serverSocket.accept();
-      (new Server()).start();
-      /*
       PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
       BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
       handleClientData(handler, writer, reader);
       clientSocket.close();
-      */
     }
   }
 
@@ -102,11 +103,21 @@ public class Server extends Thread {
   }
   
   public void run() {
-        PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        handleClientData(handler, writer, reader);
-        clientSocket.close();
+    ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
+    ServerSocket serverSocket = null;
+    try {
+      serverSocket = socketFactory.createServerSocket(SERVER_PORT);
+
+      listenAndRespond(serverSocket);
+
+    } catch (IOException e) {
+      System.out.printf("Socket Failure: %s", e.getMessage());
+    } finally {
+      if (serverSocket != null) {
+        serverSocket.close();
+      }
     }
+  }
   
   /*
      * Reads in a String and returns the longest chain of repeating characters 
