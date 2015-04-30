@@ -41,5 +41,13 @@ We will be evaluating this project on:
 ### Describe the System
 Please edit this README.md to provide a detailed description of what this system does, and how its moving parts work together.
 
+An overall description of this system would be that it basically encompassses a Server which takes a stream of input from a Client and returns it back to the Client modified to console.
+
+The serverSocket is created using the provided socket value given.
+Once the serverSocket is established 
+
 ### Test Plan
 Please edit this README.md to provide a detailed description of additional testing (manual and/or automated) that you would perform for this codebase.
+
+1) Make sure this particular port number is available for use. Many are restricted for general purpose or specific executions like email.
+2) I would
