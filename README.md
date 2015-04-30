@@ -41,10 +41,37 @@ We will be evaluating this project on:
 ### Describe the System
 Please edit this README.md to provide a detailed description of what this system does, and how its moving parts work together.
 
-An overall description of this system would be that it basically encompassses a Server which takes a stream of input from a Client and returns it back to the Client modified to console.
+Server description:
 
-The serverSocket is created using the provided socket value given.
-Once the serverSocket is established 
+/* GENERAL DESCRIPTION */
+Takes input from a client and returns a modified version of this input back to the client.
+The modified version will be a string containing the location of the character that repeated the most in a row and how many there were.
+
+A SERVER_PORT variable is set to a port value that is available for use.
+
+/* main */
+Declares a socketFactory to handle the creation of a serverSocket that is declared using the SERVER_PORT value.
+Calls method listenAndRespond with serverSocket as parameter to set up a listener for client responses.
+If the serverSocket fails to be created a catch message will be printed.
+Finally if the serverSocket is not equal to null the serverSocket will be closed and the server will stop.
+
+/* listenAndRespond */
+Creates a Datahandler, PrintWriter, and a BufferedReader to handle all the input and output.
+The Datahandler will be implemented from an already established String handle just incase we need to provide another override operation.
+The original DataHandler is just a dummy to implement from.
+The server will continue to loop until the client is done using the server.
+Until then the server will continue to call the method handleClientData to handle the input from the Client.
+
+/* handleClientData */
+Take the inputstream from the client and sends it to the handler to modify the data appropriately before returning it to the client.
+
+/* EchoDataHandler */
+Take the data passed in from the handleClientData and return a modified version of the data.
+The data is modified using the contigous method.
+
+/* contigous */
+Takes a string object and iterates through it keeping track of the longest string of the same character.
+At the end of iteration it will return a string constructed with the results of the location of this contigous and how long it is.
 
 ### Test Plan
 Please edit this README.md to provide a detailed description of additional testing (manual and/or automated) that you would perform for this codebase.
