@@ -45,7 +45,7 @@ import java.net.Socket;
 
 public class Server extends Thread {
 
-  //public static final int SERVER_PORT = 10000;
+  public static final int SERVER_PORT = 10000;
 
   public static void main(String[] args) throws Exception {
     
@@ -103,11 +103,11 @@ public class Server extends Thread {
   }
   
   public void run() {
-    int SERVER_PORT = 10000;
+    //int SERVER_PORT = 10000;
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
     try {
-      serverSocket = socketFactory.createServerSocket(SERVER_PORT);
+      serverSocket = socketFactory.createServerSocket(10000);
 
       listenAndRespond(serverSocket);
 
