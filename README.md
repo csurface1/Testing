@@ -73,8 +73,29 @@ The data is modified using the contigous method.
 Takes a string object and iterates through it keeping track of the longest string of the same character.
 At the end of iteration it will return a string constructed with the results of the location of this contigous and how long it is.
 
+Client Description:
+
+/* GENERAL DESCRIPTION */
+Establishes a connection to an operating server and allows the client to input a string of data.
+This data will be return as a modified version. The modified version will be a string containing the location of the character that repeated the most in a row and how many there were.
+
+A SERVER_ADDRESS variable is declared to hold the address of the computer that wishes to establish the connection.
+
+/* main */
+Since the Client is in the same directory as the Server it can recognize the variables declared there.
+Creates a socket for the client using SocketFactory using the SERVER_PORT from Server.java and SERVER_ADDRESS from previously declared.
+Establishes a PrintWriter and BufferedReader for the clients socket to handle input and output.
+Calls sendAndReceieve method to handle all the requests by the client to the server and handling the reponse from the server.
+
+/* sendAndRecieve */
+Continuely reads input from the clients console until the input is empty or equal to "exit" or "quit".
+Takes the input and writes to the stream for the server to read.
+Then it outputs the result from reader to the console for the client to see.
+
 ### Test Plan
 Please edit this README.md to provide a detailed description of additional testing (manual and/or automated) that you would perform for this codebase.
 
-1) Make sure this particular port number is available for use. Many are restricted for general purpose or specific executions like email.
-2) I would
+1) Make sure the port number is available for use. Many are restricted for general purpose or specific uses like email.
+2) Test if the server deals with multiple clients appropriately
+3) Test size of the input to make sure its appropriate for the problem
+4) Test the input/output streams to make sure its appropriately passing information and flushing for the next input/output.
