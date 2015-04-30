@@ -49,7 +49,7 @@ public class Client {
       BufferedReader socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
       BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
 
-      unitTest(consoleOut, socketWriter, socketReader, inputReader);
+      //unitTest(consoleOut, socketWriter, socketReader, inputReader);
       sendAndReceive(consoleOut, socketWriter, socketReader, inputReader);
 
     } catch (IOException ioex) {
