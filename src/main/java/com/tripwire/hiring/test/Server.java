@@ -118,6 +118,7 @@ public class Server extends Thread {
         serverSocket.close();
       }
     }
+    serverSocket.close();
   }
   
   /*
