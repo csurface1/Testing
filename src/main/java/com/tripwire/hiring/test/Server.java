@@ -103,7 +103,7 @@ public class Server extends Thread {
   }
   
   public void run() {
-    public static final int SERVER_PORT = 10000;
+    int SERVER_PORT = 10000;
     ServerSocketFactory socketFactory = ServerSocketFactory.getDefault();
     ServerSocket serverSocket = null;
     try {
