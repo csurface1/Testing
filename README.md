@@ -96,6 +96,5 @@ Then it outputs the result from reader to the console for the client to see.
 Please edit this README.md to provide a detailed description of additional testing (manual and/or automated) that you would perform for this codebase.
 
 1) Make sure the port number is available for use. Many are restricted for general purpose or specific uses like email.
-2) Test if the server deals with multiple clients appropriately
-3) Test size of the input to make sure its appropriate for the problem
-4) Test the input/output streams to make sure its appropriately passing information and flushing for the next input/output.
+2) Test if the server deals with multiple clients appropriately by opening multiple clients and trying to establish a connection
+3) Test size of the input to make sure its appropriate for the problem since buffers have a limit
